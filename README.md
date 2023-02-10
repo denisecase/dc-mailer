@@ -1,2 +1,3 @@
 # email-alert
-Send an email using Python
+
+Send an email alert using Python
