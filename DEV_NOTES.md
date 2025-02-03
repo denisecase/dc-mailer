@@ -1,3 +1,5 @@
+# DEV NOTES
+
 ## A Note on Organization
 
 pip requires a folder/package to install. 
@@ -34,6 +36,14 @@ version = "0.1.0"
 packages = ["dc_mailer"] # list of package folders
 ```
 
+## PyPI Publish With GitHub Actions
+
+Log in to <https://pypi.org/> / Account Settings / Add API token.
+All projects, name it same as repo. Copy the PyPi token. 
+
+In GitHub, go to repo / settings / secrets / actions and make a new secret named PYPI_API_TOKEN (see publish.yml). Paste PyPi token.
+
+
 ## Versioning notes
 
 - update pyproject.toml to new version, e.g., v0.1.1
@@ -43,7 +53,7 @@ git tag -d v0.1.1
 git push origin --delete v0.1.1
 
 git add .
-git commit -m "bump to v0.1.1"
+git commit -m "v0.1.1"
 git tag -a v0.1.1 -m "Release v0.1.1"
 git push origin main
 git push origin v0.1.1

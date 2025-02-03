@@ -10,13 +10,8 @@
 
 ## Step 1. Install this Module
 
-Add this to your requirements.txt and install. 
-
-```
-git+https://github.com/denisecase/dc-mailer.git
-```
-
-Or use `pip install dc-mailer`
+Use `pip install dc-mailer`
+or add `dc-mailer` to your requirements.txt and install. 
 
 ## Step 2. Add .env.toml To your Python Project
 
@@ -33,7 +28,7 @@ outgoing_email_password = "your-app-password"
 
 ## Step 3. Add .env.toml To .gitignore
 
-Ensure your secrets are not published by adding an entry in .gitignore:
+Ensure your secrets are not published with an entry in .gitignore:
 
 ```
 .env.toml
