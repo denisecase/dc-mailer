@@ -2,10 +2,13 @@
 
 pip requires a folder/package to install. 
 
-Repository Name: email-alert
+Repository Name: dc-mailer
   - Uses dashes (-) as allowed in GitHub repository names.
   - Cannot be used as a Python package name due to dashes.
   - Has no effect on Python package imports.
+  - Nice if it matches the PyPi distribution name.
+  - The PyPi distribution name is the package/project/folder name but with a dash not underscore, because Python I guess. 
+  
 
 Package (Folder) Name: dc_mailer
   - Uses underscores (_) to ensure compatibility with Python imports.
