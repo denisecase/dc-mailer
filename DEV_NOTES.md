@@ -1,5 +1,16 @@
 # DEV NOTES
 
+## How to Run
+
+To run this file locally for testing, fork & clone the repo, add .env.toml. 
+Open the project repository in VS Code, open a PowerShell terminal and run 
+
+```
+pytest
+py dc_mailer\mailer.py
+```
+
+
 ## A Note on Organization
 
 pip requires a folder/package to install. 
@@ -53,8 +64,8 @@ git tag -d v0.1.1
 git push origin --delete v0.1.1
 
 git add .
-git commit -m "v0.1.1"
-git tag -a v0.1.1 -m "Release v0.1.1"
+git commit -m "v0.1.2"
+git tag -a v0.1.2 -m "Release v0.1.2"
 git push origin main
-git push origin v0.1.1
+git push origin v0.1.2
 ```

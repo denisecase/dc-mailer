@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dc_mailer" # install name for pip
-version = "0.1.0"
+version = "0.1.1"
 description = "A simple email alert utility for Python projects"
 authors = [{name = "Denise Case", email = "denisecase@gmail.com"}]
 readme = "README.md"
@@ -15,5 +15,6 @@ dependencies = []
 packages = ["dc_mailer"] # list of package folders
 
 [project.urls]
-"Homepage" = "https://github.com/denisecase/dc-mailer"
-"Repository" = "https://github.com/denisecase/dc-mailer"
+Homepage = "https://github.com/denisecase/dc-mailer"
+Repository = "https://github.com/denisecase/dc-mailer"
+BugTracker = "https://github.com/denisecase/dc-mailer/issues"

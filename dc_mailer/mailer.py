@@ -6,6 +6,7 @@ Date: 2022-12-27
 Updated: 2025-02-02
 """
 
+import os
 import logging
 import smtplib
 import tomllib
@@ -19,42 +20,73 @@ logging.basicConfig(
 
 
 def load_config(config_file: str = None):
-    """Load email settings from a .env.toml file.
+    """
+    Load settings from environment variables or a .env.toml file.
 
     Prioritizes:
-    1. User-specified absolute `config_file` (if provided).
-    2. `.env.toml` located in the package install directory.
-    3. `.env.toml` in the current working directory.
-    4. Raises a `RuntimeError` if no valid config is found.
+    1. Environment variables.
+    2. User-specified absolute `config_file` (if provided).
+    3. `.env.toml` located in the package install directory.
+    4. `.env.toml` in the current working directory.
+    5. Raises a `RuntimeError` if no valid config is found.
     """
 
+    # Define the mapping between config keys and environment variable names
+    env_var_mapping = {
+        "outgoing_email_host": "OUTGOING_EMAIL_HOST",
+        "outgoing_email_port": "OUTGOING_EMAIL_PORT",
+        "outgoing_email_address": "OUTGOING_EMAIL_ADDRESS",
+        "outgoing_email_password": "OUTGOING_EMAIL_PASSWORD",
+    }
+
+    # Initialize the config dictionary
+    config = {}
+
+    # Check environment variables first
+    for key, env_var in env_var_mapping.items():
+        value = os.getenv(env_var)
+        if value is not None:
+            config[key] = value
+
+    # If all required configs are found in environment variables, return the config
+    if len(config) == len(env_var_mapping):
+        return config
+
+    # If not all configs are found in environment variables, proceed to check files
     possible_paths = []
 
-    # If an absolute file path is provided, use it first
     if config_file:
         user_provided_path = Path(config_file).expanduser().resolve()
         possible_paths.append(user_provided_path)
 
-    # Look in the package install directory
     script_dir = Path(__file__).resolve().parent
     package_path = script_dir / ".env.toml"
     possible_paths.append(package_path)
 
-    # Check the current working directory
     cwd_path = Path.cwd() / ".env.toml"
     possible_paths.append(cwd_path)
 
-    # Try each path in order
     for config_path in possible_paths:
         if config_path.exists():
             try:
                 with config_path.open("rb") as file:
-                    return tomllib.load(file)
+                    file_config = tomllib.load(file)
+                    # Update the config dictionary with values from the file
+                    for key in env_var_mapping.keys():
+                        if key not in config and key in file_config:
+                            config[key] = file_config[key]
+                # After loading from file, check if all configs are present
+                if len(config) == len(env_var_mapping):
+                    return config
+                else:
+                    missing_keys = set(env_var_mapping.keys()) - set(config.keys())
+                    logging.error(f"Missing configuration keys: {missing_keys}")
+                    raise RuntimeError("Incomplete configuration.")
             except Exception as e:
                 logging.error(f"Error loading config file {config_path}: {e}")
                 raise RuntimeError("Failed to load configuration file.")
 
-    # If no file is found, raise an error
+    # If no valid config is found, raise an error
     logging.error(
         f"Config file not found in any of the attempted locations: {possible_paths}"
     )
@@ -77,7 +109,7 @@ def send_mail(
     try:
         # Load email settings from config
         host = config["outgoing_email_host"]
-        port = int(config["outgoing_email_port"])  
+        port = int(config["outgoing_email_port"])
         sender_email = config["outgoing_email_address"]
         sender_password = config["outgoing_email_password"]
         recipient = recipient or sender_email  # Default recipient to sender
