@@ -1,5 +1,5 @@
 import pytest
-from email_alert.emailer import send_email
+from dc_emailer.emailer import send_email
 
 def test_send_email():
     """Test the send_email function."""

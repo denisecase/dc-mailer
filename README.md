@@ -62,14 +62,12 @@ If your account has 2FA enabled, you must generate an App Password:
 Once installed and your .env.toml file is ready, you can use it in your code. 
 
 ```python
-from utils_email.emailer import send_mail
+from dc_emailer import send_email
 
-# Define email details
 title = "Email from Data Analyst and Python Developer"
 content = "Did you know the Python standard library enables emailing?"
 recipient = "your.email@gmail.com"
 
-# Send email
 try:
     send_email(subject=title, body=content, recipient=recipient)
     print("SUCCESS: Email sent successfully.")
@@ -85,19 +83,38 @@ Open the project repository in VS Code, open a PowerShell terminal and run
 
 ```
 pytest
-py email_alert\emailer.py
+py dc_emailer\emailer.py
 ```
 
 ## A Note on Organization
 
+pip requires a folder/package to install. 
+
 Repository Name: email-alert
   - Uses dashes (-) as allowed in GitHub repository names.
-  - Cannot be used as a Python package name.
+  - Cannot be used as a Python package name due to dashes.
+  - Has no effect on Python package imports.
 
-Package (Folder) Name: email_alert
+Package (Folder) Name: dc_emailer
   - Uses underscores (_) to ensure compatibility with Python imports.
-  - Becomes a package by including an __init__.py file.
+  - Becomes an installable package when  __init__.py file is added.
 
-Module Name: emailer.py
+File Name: emailer.py
   - The file name with a .py extension.
-  - Can be executed as a script or imported as a module.
+  - Can be executed as a script. 
+  - We avoid using the file name in imports if we set up __init__.py correctly. 
+
+pyproject.toml
+  - [project] name = "dc_emailer"`
+  - Used for installation (`pip install dc_emailer`).
+  - The package folder should match.
+
+```toml
+[project]
+name = "dc_emailer" # install name
+
+version = "0.1.0"
+
+[tool.setuptools]
+packages = ["dc_emailer"] # list of package folders
+```

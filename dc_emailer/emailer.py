@@ -5,6 +5,7 @@ Author: Denise Case
 Date: 2022-12-27
 Updated: 2025-02-02
 """
+
 import logging
 import smtplib
 import tomllib
@@ -12,7 +13,9 @@ from email.message import EmailMessage
 from pathlib import Path
 
 # Configure logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
 
 def load_config(config_file: str = None):
@@ -52,11 +55,15 @@ def load_config(config_file: str = None):
                 raise RuntimeError("Failed to load configuration file.")
 
     # If no file is found, raise an error
-    logging.error(f"Config file not found in any of the attempted locations: {possible_paths}")
+    logging.error(
+        f"Config file not found in any of the attempted locations: {possible_paths}"
+    )
     raise RuntimeError("Missing configuration file. Check .env.toml location.")
 
 
-def send_email(subject: str, body: str, recipient: str = None, config_file: str = None) -> None:
+def send_email(
+    subject: str, body: str, recipient: str = None, config_file: str = None
+) -> None:
     """Send an email using SMTP settings from a TOML config file.
 
     Args:
@@ -70,7 +77,7 @@ def send_email(subject: str, body: str, recipient: str = None, config_file: str 
     try:
         # Load email settings from config
         host = config["outgoing_email_host"]
-        port = int(config["outgoing_email_port"])  # Ensure integer type
+        port = int(config["outgoing_email_port"])  
         sender_email = config["outgoing_email_address"]
         sender_password = config["outgoing_email_password"]
         recipient = recipient or sender_email  # Default recipient to sender
@@ -126,6 +133,6 @@ if __name__ == "__main__":
     content_str = "Did you know the Python standard library enables emailing?"
     try:
         send_email(subject=subject_str, body=content_str)
-        logging.info("Done.")
+        logging.info("SUCCESS: Email sent.")
     except RuntimeError as e:
-        logging.error(f"Email sending failed: {e}")
+        logging.error(f"ERROR: Email sending failed: {e}")
