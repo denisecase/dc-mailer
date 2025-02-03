@@ -1,6 +1,6 @@
-# email-alert
+# dc-mailer
 
-> Send an email alert using Python
+> Send an email alert using Python and Gmail
 
 ## Requirements
 
@@ -13,8 +13,10 @@
 Add this to your requirements.txt and install. 
 
 ```
-git+https://github.com/denisecase/email-alert.git
+git+https://github.com/denisecase/dc-mailer.git
 ```
+
+Or use `pip install dc-mailer`
 
 ## Step 2. Add .env.toml To your Python Project
 
@@ -63,14 +65,14 @@ If your account has 2FA enabled, you must generate an App Password:
 Once installed and your .env.toml file is ready, you can use it in your code. 
 
 ```python
-from dc_emailer import send_email
+from dc_mailer import send_mail
 
 title = "Email from Data Analyst and Python Developer"
 content = "Did you know the Python standard library enables emailing?"
 recipient = "your.email@gmail.com"
 
 try:
-    send_email(subject=title, body=content, recipient=recipient)
+    send_mail(subject=title, body=content, recipient=recipient)
     print("SUCCESS: Email sent successfully.")
 except RuntimeError as e:
     print(f"ERROR: Email sending failed: {e}")
@@ -84,38 +86,5 @@ Open the project repository in VS Code, open a PowerShell terminal and run
 
 ```
 pytest
-py dc_emailer\emailer.py
-```
-
-## A Note on Organization
-
-pip requires a folder/package to install. 
-
-Repository Name: email-alert
-  - Uses dashes (-) as allowed in GitHub repository names.
-  - Cannot be used as a Python package name due to dashes.
-  - Has no effect on Python package imports.
-
-Package (Folder) Name: dc_emailer
-  - Uses underscores (_) to ensure compatibility with Python imports.
-  - Becomes an installable package when  __init__.py file is added.
-
-File Name: emailer.py
-  - The file name with a .py extension.
-  - Can be executed as a script. 
-  - We avoid using the file name in imports if we set up __init__.py correctly. 
-
-pyproject.toml
-  - [project] name = "dc_emailer"`
-  - Used for installation (`pip install dc_emailer`).
-  - The package folder should match.
-
-```toml
-[project]
-name = "dc_emailer" # install name
-
-version = "0.1.0"
-
-[tool.setuptools]
-packages = ["dc_emailer"] # list of package folders
+py dc_mailer\mailer.py
 ```

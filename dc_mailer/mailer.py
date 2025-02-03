@@ -61,7 +61,7 @@ def load_config(config_file: str = None):
     raise RuntimeError("Missing configuration file. Check .env.toml location.")
 
 
-def send_email(
+def send_mail(
     subject: str, body: str, recipient: str = None, config_file: str = None
 ) -> None:
     """Send an email using SMTP settings from a TOML config file.
@@ -132,7 +132,7 @@ if __name__ == "__main__":
     subject_str = "Email from Data Analyst and Python Developer"
     content_str = "Did you know the Python standard library enables emailing?"
     try:
-        send_email(subject=subject_str, body=content_str)
+        send_mail(subject=subject_str, body=content_str)
         logging.info("SUCCESS: Email sent.")
     except RuntimeError as e:
         logging.error(f"ERROR: Email sending failed: {e}")

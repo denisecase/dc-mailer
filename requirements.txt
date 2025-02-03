@@ -90,4 +90,7 @@ pytest
 # ======================================================
 
 # uncomment this line to install the package from GitHub
-#git+https://github.com/denisecase/email-alert.git
+#git+https://github.com/denisecase/dc-mailer.git
+
+# uncomment this line to install the package from PyPI
+#dc-mailer

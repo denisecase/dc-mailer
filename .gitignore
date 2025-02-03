@@ -1,18 +1,44 @@
 # This .gitignore file lists content that does NOT need to be tracked in the project history
 
-# Python virtual environment folder
+# ===============================
+# Virtual Environments
+# ===============================
 .venv/
 
-# Visual Studio Code settings and workspace folder
+# ===============================
+# IDE and Editor Configurations
+# ===============================
 .vscode/
 
-# Compiled Python files
+# ===============================
+# Compiled Python Files
+# ===============================
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
 .pytest_cache/
 
-# macOS system files
+# ===============================
+# Build and Distribution Artifacts
+# ===============================
+build/
+dist/
+*.egg-info/
+
+# ===============================
+# System-Specific Files
+# ===============================
 .DS_Store
 
-# IMPORTANT: Environment variable files (which could contain sensitive information)
+# ===============================
+# Logs and Temporary Files
+# ===============================
+*.log
+*.tmp
+
+# ===============================
+# Sensitive Configuration Files
+# ===============================
 .env.toml
 .env
