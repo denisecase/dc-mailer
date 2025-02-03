@@ -50,6 +50,7 @@ Ensure your secrets are not published by adding an entry in .gitignore:
 
 If your account has 2FA enabled, you must generate an App Password:
 - Go to <https://support.google.com/accounts/answer/185833?hl=en> 
+- Click on "Create and manage your app passwords".
 - Sign in and navigate to Account "Security" / "App Passwords"
 - Create an app password - name it (e.g., "PythonEmailAlerts"). 
 - Generate and copy the 16-character password.
