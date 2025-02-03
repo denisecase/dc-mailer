@@ -143,7 +143,7 @@ def send_mail(
             logging.info(f"Logged in as {sender_email}. Sending email...")
 
             server.send_message(msg)
-            logging.info("Email sent successfully.")
+            logging.info("Email sent.")
 
     except smtplib.SMTPAuthenticationError:
         logging.error("SMTP authentication failed: Invalid username/password.")
@@ -160,11 +160,11 @@ def send_mail(
 
 
 if __name__ == "__main__":
-    logging.info("Starting emailer.py")
+    logging.info("Ready for work.")
     subject_str = "Email from Data Analyst and Python Developer"
     content_str = "Did you know the Python standard library enables emailing?"
     try:
         send_mail(subject=subject_str, body=content_str)
         logging.info("SUCCESS: Email sent.")
     except RuntimeError as e:
-        logging.error(f"ERROR: Email sending failed: {e}")
+        logging.error(f"ERROR: Sending failed: {e}")

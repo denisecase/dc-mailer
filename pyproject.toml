@@ -3,16 +3,27 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "dc_mailer" # install name for pip
-version = "0.1.1"
+name = "dc_mailer" 
+version = "0.1.3"
 description = "A simple email alert utility for Python projects"
 authors = [{name = "Denise Case", email = "denisecase@gmail.com"}]
 readme = "README.md"
+license = { file = "LICENSE.txt" }
 requires-python = ">=3.11"
+keywords = ["email", "alert", "notification"]
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
 dependencies = []
 
+[project.optional-dependencies]
+dev = ["pytest", "twine", "build"]
+
 [tool.setuptools]
-packages = ["dc_mailer"] # list of package folders
+packages = ["dc_mailer"] 
 
 [project.urls]
 Homepage = "https://github.com/denisecase/dc-mailer"

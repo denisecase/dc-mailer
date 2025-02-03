@@ -30,8 +30,8 @@ Then, create a .env.toml file in your project directory with the following.
 ```
 outgoing_email_host = "smtp.gmail.com"
 outgoing_email_port = 587
-outgoing_email_address = "your-email@gmail.com"
-outgoing_email_password = "your-app-password"
+outgoing_email_address = "youremail@gmail.com"
+outgoing_email_password = "aaaabbbbccccdddd"
 ```
 
 ### GitHub Action Deployments
@@ -51,6 +51,7 @@ Next, reference these secrets in your GitHub Actions workflow.
 For an example, see [this deploy.yml](https://github.com/denisecase/kafka-producer-earthquake/blob/main/.github/workflows/deploy.yml).
 
 ---
+
 ## Step 3. Configure Gmail 
 
 Enable IMAP
@@ -67,6 +68,7 @@ Generate an App Password
 - For detailed instructions, refer to [Google's support page](https://support.google.com/accounts/answer/185833?hl=en).
 
 ---
+
 ## Step 4. Import and Use in a Python Script
 
 Once installed and your .env.toml file is ready, you can use it in your code. 
@@ -76,11 +78,11 @@ from dc_mailer import send_mail
 
 title = "Email from Data Analyst and Python Developer"
 content = "Did you know the Python standard library enables emailing?"
-recipient = "your.email@gmail.com"
+recipient = "youremail@gmail.com"
 
 try:
     send_mail(subject=title, body=content, recipient=recipient)
-    print("SUCCESS: Email sent successfully.")
+    print("SUCCESS: Email sent.")
 except RuntimeError as e:
-    print(f"ERROR: Email sending failed: {e}")
+    print(f"ERROR: Sending failed: {e}")
 ```
