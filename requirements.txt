@@ -81,6 +81,8 @@
 pip
 setuptools
 wheel
+build # creates distribution packages (.tar.gz and .whl)
+twine # uploads distributions to PyPI (or GitHub Packages)
 
 # Running tests
 pytest

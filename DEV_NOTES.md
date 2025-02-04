@@ -3,11 +3,16 @@
 ## How to Run
 
 To run this file locally for testing, fork & clone the repo, add .env.toml. 
-Open the project repository in VS Code, open a PowerShell terminal and run 
+Create .venv, activate, and install packages. 
+Open the project repository in VS Code, open a PowerShell terminal and run the following commands.
 
-```
+NOTE: When you run a script directly, it doesn't consider itself part of a package.
+Run a single file as a script. 
+Run a file in a folder/package with relative local imports as a module.
+
+```shell
 pytest
-py dc_mailer\mailer.py
+py -m dc_mailer.mailer
 ```
 
 
@@ -57,15 +62,18 @@ In GitHub, go to repo / settings / secrets / actions and make a new secret named
 
 ## Versioning notes
 
-- update pyproject.toml to new version, e.g., v0.1.1
+- update pyproject.toml to new version
 - if didn't succeed, remove locally and remote first
 ```
-git tag -d v0.1.3
-git push origin --delete v0.1.3
+git tag -d v0.1.5
+git push origin --delete v0.1.5
+```
 
+To publish:
+```
 git add .
-git commit -m "v0.1.3"
-git tag -a v0.1.3 -m "Release v0.1.3"
+git commit -m "v0.1.5"
+git tag -a v0.1.5 -m "Release v0.1.5"
 git push origin main
-git push origin v0.1.3
+git push origin v0.1.5
 ```

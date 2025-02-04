@@ -41,4 +41,5 @@ dist/
 # Sensitive Configuration Files
 # ===============================
 .env.toml
+.env.toml.bak
 .env
